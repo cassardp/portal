@@ -93,13 +93,27 @@ var Portal = (function () {
     gates.forEach(function (gate) {
       var btn = document.createElement('button');
       btn.className = 'gate-btn';
-      btn.style.background = gate.color;
-      btn.textContent = gate.name;
+
+      var shadow = document.createElement('span');
+      shadow.className = 'btn-shadow';
+      btn.appendChild(shadow);
+
+      var edge = document.createElement('span');
+      edge.className = 'btn-edge';
+      edge.style.background = gate.color;
+      edge.style.filter = 'brightness(0.7)';
+      btn.appendChild(edge);
+
+      var front = document.createElement('span');
+      front.className = 'btn-front';
+      front.style.background = gate.color;
+      front.textContent = gate.name;
+      btn.appendChild(front);
 
       var edit = document.createElement('span');
       edit.className = 'edit-icon';
       edit.textContent = '✎';
-      btn.appendChild(edit);
+      front.appendChild(edit);
 
       btn.addEventListener('click', function (e) {
         if (e.target === edit || e.target.closest('.edit-icon')) {
