@@ -18,6 +18,7 @@ var Portal = (function () {
     els.delay = document.getElementById('input-delay');
     els.delayValue = document.getElementById('delay-value');
     els.color = document.getElementById('input-color');
+    els.size = 'half';
     els.btnDelete = document.getElementById('btn-delete');
 
     gates = load();
@@ -26,17 +27,16 @@ var Portal = (function () {
     document.getElementById('btn-add').addEventListener('click', function () {
       openModal(null);
     });
-    document.getElementById('btn-add-empty').addEventListener('click', function () {
-      openModal(null);
-    });
-
-    els.delay.addEventListener('input', function () {
-      els.delayValue.textContent = els.delay.value;
-    });
 
     document.querySelectorAll('.color-opt').forEach(function (btn) {
       btn.addEventListener('click', function () {
         selectColor(btn.dataset.color);
+      });
+    });
+
+    document.querySelectorAll('.size-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        selectSize(btn.dataset.size);
       });
     });
 
@@ -92,7 +92,7 @@ var Portal = (function () {
 
     gates.forEach(function (gate) {
       var btn = document.createElement('button');
-      btn.className = 'gate-btn';
+      btn.className = 'gate-btn' + (gate.size === 'full' ? ' size-full' : '');
 
       var shadow = document.createElement('span');
       shadow.className = 'btn-shadow';
@@ -159,6 +159,7 @@ var Portal = (function () {
     els.delay.value = gate ? gate.delay : 0;
     els.delayValue.textContent = gate ? gate.delay : 0;
     selectColor(gate ? gate.color : '#4A90D9');
+    selectSize(gate ? gate.size || 'half' : 'half');
     els.btnDelete.hidden = !gate;
 
     els.modal.showModal();
@@ -171,6 +172,13 @@ var Portal = (function () {
     });
   }
 
+  function selectSize(size) {
+    els.size = size;
+    document.querySelectorAll('.size-opt').forEach(function (btn) {
+      btn.classList.toggle('selected', btn.dataset.size === size);
+    });
+  }
+
   function save() {
     var data = {
       id: editingId || uuid(),
@@ -178,7 +186,8 @@ var Portal = (function () {
       phone: els.phone.value.trim(),
       code: els.code.value.trim(),
       delay: parseInt(els.delay.value, 10),
-      color: els.color.value
+      color: els.color.value,
+      size: els.size
     };
 
     if (!data.name || !data.phone || !data.code) return;

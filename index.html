@@ -13,16 +13,13 @@
 </head>
 <body>
   <div id="app">
-    <header>
-      <button id="btn-add" aria-label="Ajouter un accès">+</button>
-    </header>
-
     <main id="grid"></main>
 
     <div id="empty-state" hidden>
       <p>Aucun accès configuré</p>
-      <button id="btn-add-empty">Ajouter un accès</button>
     </div>
+
+    <button id="btn-add">Ajouter un bouton</button>
   </div>
 
   <dialog id="modal">
@@ -38,8 +35,13 @@
       <label for="input-code">Code DTMF</label>
       <input id="input-code" type="text" required placeholder="1234#">
 
-      <label for="input-delay">Délai avant code : <span id="delay-value">0</span> pauses</label>
-      <input id="input-delay" type="range" min="0" max="10" value="0">
+      <input id="input-delay" type="hidden" value="0">
+
+      <label>Taille</label>
+      <div id="size-picker">
+        <button type="button" class="size-opt selected" data-size="half">50%</button>
+        <button type="button" class="size-opt" data-size="full">100%</button>
+      </div>
 
       <label for="input-color">Couleur</label>
       <div id="color-picker">

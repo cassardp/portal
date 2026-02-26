@@ -1,4 +1,4 @@
-var CACHE_NAME = 'portal-v2';
+var CACHE_NAME = 'portal-v3';
 var ASSETS = [
   './',
   './index.html',
