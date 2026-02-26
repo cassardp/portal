@@ -15,7 +15,6 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
 }
 
 body {
@@ -32,7 +31,6 @@ body {
   display: flex;
   flex-direction: column;
   padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 16px);
-  overflow: hidden;
 }
 
 #btn-add {
@@ -55,6 +53,13 @@ body {
   gap: 16px;
   flex: 1;
   align-content: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#grid::-webkit-scrollbar {
+  display: none;
 }
 
 .gate-btn.size-full {
