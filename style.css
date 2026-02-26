@@ -145,16 +145,6 @@ body {
   opacity: 1;
 }
 
-/* DTMF playing pulse */
-@keyframes dtmf-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.gate-btn.playing .btn-front {
-  animation: dtmf-pulse 0.3s ease-in-out infinite;
-}
-
 /* Add button in grid */
 .btn-add-grid {
   aspect-ratio: 1;
