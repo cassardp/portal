@@ -33,14 +33,6 @@ body {
   padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 16px);
 }
 
-#version {
-  text-align: center;
-  font-size: 10px;
-  color: var(--text-muted);
-  opacity: 0.4;
-  padding-top: 8px;
-}
-
 /* Grid */
 #grid {
   display: grid;
