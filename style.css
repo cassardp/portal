@@ -51,7 +51,7 @@ body {
 
 .gate-btn {
   position: relative;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 1;
   border: none;
   background: transparent;
   padding: 0;
@@ -147,7 +147,7 @@ body {
 
 /* Add button in grid */
 .btn-add-grid {
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 1;
   border-radius: 18px;
   border: 2px dashed var(--text-muted);
   background: transparent;
