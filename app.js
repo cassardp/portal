@@ -37,7 +37,7 @@ var Portal = (function () {
     });
 
     els.btnDelete.addEventListener('click', function () {
-      if (editingId && confirm('Supprimer cet accès ?')) {
+      if (editingId && confirm('Delete this gate?')) {
         gates = gates.filter(function (g) { return g.id !== editingId; });
         persist();
         render();
@@ -145,7 +145,7 @@ var Portal = (function () {
     editingId = id;
     var gate = id ? gates.find(function (g) { return g.id === id; }) : null;
 
-    els.modalTitle.textContent = gate ? 'Modifier l\'accès' : 'Nouvel accès';
+    els.modalTitle.textContent = gate ? 'Edit gate' : 'New gate';
     els.name.value = gate ? gate.name : '';
     els.phone.value = gate ? gate.phone : '';
     els.code.value = gate ? gate.code : '';

@@ -1,7 +1,7 @@
 {
   "name": "Portal",
   "short_name": "Portal",
-  "description": "Ouvrir portails et portes par téléphone",
+  "description": "Open gates and doors via phone call",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#1a1a2e",

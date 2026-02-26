@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,20 +18,20 @@
 
   <dialog id="modal">
     <form id="form" method="dialog">
-      <h2 id="modal-title">Nouvel accès</h2>
+      <h2 id="modal-title">New gate</h2>
 
-      <label for="input-name">Nom</label>
-      <input id="input-name" type="text" required placeholder="Portail Principal">
+      <label for="input-name">Name</label>
+      <input id="input-name" type="text" required placeholder="Main Gate">
 
-      <label for="input-phone">Numéro de téléphone</label>
+      <label for="input-phone">Phone number</label>
       <input id="input-phone" type="tel" required placeholder="+33148123456">
 
-      <label for="input-code">Code DTMF</label>
+      <label for="input-code">DTMF code</label>
       <input id="input-code" type="text" required placeholder="1234#">
 
       <input id="input-delay" type="hidden" value="0">
 
-      <label for="input-color">Couleur</label>
+      <label for="input-color">Color</label>
       <div id="color-picker">
         <button type="button" class="color-opt" data-color="#E74C3C" style="background:#E74C3C"></button>
         <button type="button" class="color-opt" data-color="#E84393" style="background:#E84393"></button>
@@ -49,10 +49,10 @@
       <input id="input-color" type="hidden" value="#4A90D9">
 
       <div id="form-actions">
-        <button type="button" id="btn-delete" hidden>Supprimer</button>
+        <button type="button" id="btn-delete" hidden>Delete</button>
         <div id="form-actions-right">
-          <button type="button" id="btn-cancel">Annuler</button>
-          <button type="submit" id="btn-save">Enregistrer</button>
+          <button type="button" id="btn-cancel">Cancel</button>
+          <button type="submit" id="btn-save">Save</button>
         </div>
       </div>
     </form>
