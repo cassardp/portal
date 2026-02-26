@@ -1,3 +1,51 @@
+var DTMF = (function () {
+  var FREQS = {
+    '1': [697, 1209], '2': [697, 1336], '3': [697, 1477],
+    '4': [770, 1209], '5': [770, 1336], '6': [770, 1477],
+    '7': [852, 1209], '8': [852, 1336], '9': [852, 1477],
+    '*': [941, 1209], '0': [941, 1336], '#': [941, 1477]
+  };
+  var TONE_MS = 150;
+  var GAP_MS = 100;
+  var VOLUME = 0.5;
+  var ctx = null;
+
+  function ensureContext() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+
+  function playTone(digit, startTime) {
+    var pair = FREQS[digit];
+    if (!pair) return;
+    var ac = ensureContext();
+    var gain = ac.createGain();
+    gain.gain.value = VOLUME;
+    gain.connect(ac.destination);
+    for (var i = 0; i < 2; i++) {
+      var osc = ac.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = pair[i];
+      osc.connect(gain);
+      osc.start(startTime);
+      osc.stop(startTime + TONE_MS / 1000);
+    }
+  }
+
+  function playSequence(code) {
+    var ac = ensureContext();
+    var t = ac.currentTime;
+    for (var i = 0; i < code.length; i++) {
+      playTone(code[i], t);
+      t += (TONE_MS + GAP_MS) / 1000;
+    }
+    return code.length * (TONE_MS + GAP_MS);
+  }
+
+  return { playSequence: playSequence, ensureContext: ensureContext };
+})();
+
 var Portal = (function () {
   var STORAGE_KEY = 'portal_gates';
 
@@ -100,12 +148,27 @@ var Portal = (function () {
       edit.textContent = '✎';
       front.appendChild(edit);
 
+      var lastTap = 0;
+      var tapTimer = null;
       btn.addEventListener('click', function (e) {
         if (e.target === edit || e.target.closest('.edit-icon')) {
           openModal(gate.id);
           return;
         }
-        call(gate);
+        var now = Date.now();
+        if (now - lastTap < 400) {
+          clearTimeout(tapTimer);
+          lastTap = 0;
+          var duration = DTMF.playSequence(gate.code);
+          btn.classList.add('playing');
+          setTimeout(function () { btn.classList.remove('playing'); }, duration);
+        } else {
+          lastTap = now;
+          tapTimer = setTimeout(function () {
+            lastTap = 0;
+            call(gate);
+          }, 400);
+        }
       });
 
       var touchMoved = false;
