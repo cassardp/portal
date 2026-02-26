@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Portal</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Portal</h1>
+      <button id="btn-add" aria-label="Ajouter un accès">+</button>
+    </header>
+
+    <main id="grid"></main>
+
+    <div id="empty-state" hidden>
+      <p>Aucun accès configuré</p>
+      <button id="btn-add-empty">Ajouter un accès</button>
+    </div>
+  </div>
+
+  <dialog id="modal">
+    <form id="form" method="dialog">
+      <h2 id="modal-title">Nouvel accès</h2>
+
+      <label for="input-name">Nom</label>
+      <input id="input-name" type="text" required placeholder="Portail Principal">
+
+      <label for="input-phone">Numéro de téléphone</label>
+      <input id="input-phone" type="tel" required placeholder="+33148123456">
+
+      <label for="input-code">Code DTMF</label>
+      <input id="input-code" type="text" required placeholder="1234#">
+
+      <label for="input-delay">Délai avant code : <span id="delay-value">3</span> pauses</label>
+      <input id="input-delay" type="range" min="1" max="10" value="3">
+
+      <label for="input-color">Couleur</label>
+      <div id="color-picker">
+        <button type="button" class="color-opt" data-color="#4A90D9" style="background:#4A90D9"></button>
+        <button type="button" class="color-opt" data-color="#E74C3C" style="background:#E74C3C"></button>
+        <button type="button" class="color-opt" data-color="#2ECC71" style="background:#2ECC71"></button>
+        <button type="button" class="color-opt" data-color="#F39C12" style="background:#F39C12"></button>
+        <button type="button" class="color-opt" data-color="#9B59B6" style="background:#9B59B6"></button>
+        <button type="button" class="color-opt" data-color="#1ABC9C" style="background:#1ABC9C"></button>
+        <button type="button" class="color-opt" data-color="#E67E22" style="background:#E67E22"></button>
+        <button type="button" class="color-opt" data-color="#34495E" style="background:#34495E"></button>
+      </div>
+      <input id="input-color" type="hidden" value="#4A90D9">
+
+      <div id="form-actions">
+        <button type="button" id="btn-delete" hidden>Supprimer</button>
+        <div id="form-actions-right">
+          <button type="button" id="btn-cancel">Annuler</button>
+          <button type="submit" id="btn-save">Enregistrer</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
