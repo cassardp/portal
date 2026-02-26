@@ -16,7 +16,6 @@ var Portal = (function () {
     els.phone = document.getElementById('input-phone');
     els.code = document.getElementById('input-code');
     els.delay = document.getElementById('input-delay');
-    els.delayValue = document.getElementById('delay-value');
     els.color = document.getElementById('input-color');
     els.size = 'half';
     els.btnDelete = document.getElementById('btn-delete');
@@ -157,7 +156,6 @@ var Portal = (function () {
     els.phone.value = gate ? gate.phone : '';
     els.code.value = gate ? gate.code : '';
     els.delay.value = gate ? gate.delay : 0;
-    els.delayValue.textContent = gate ? gate.delay : 0;
     selectColor(gate ? gate.color : '#4A90D9');
     selectSize(gate ? gate.size || 'half' : 'half');
     els.btnDelete.hidden = !gate;
