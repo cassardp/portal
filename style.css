@@ -112,6 +112,10 @@ header h1 {
 }
 
 /* Empty state */
+#empty-state[hidden] {
+  display: none;
+}
+
 #empty-state {
   flex: 1;
   display: flex;
