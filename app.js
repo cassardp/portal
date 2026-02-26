@@ -142,8 +142,8 @@ var Portal = (function () {
     els.name.value = gate ? gate.name : '';
     els.phone.value = gate ? gate.phone : '';
     els.code.value = gate ? gate.code : '';
-    els.delay.value = gate ? gate.delay : 3;
-    els.delayValue.textContent = gate ? gate.delay : 3;
+    els.delay.value = gate ? gate.delay : 0;
+    els.delayValue.textContent = gate ? gate.delay : 0;
     selectColor(gate ? gate.color : '#4A90D9');
     els.btnDelete.hidden = !gate;
 
