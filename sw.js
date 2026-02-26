@@ -1,12 +1,9 @@
-importScripts('./version.js');
-
-var CACHE_NAME = 'portal-v' + APP_VERSION;
+var CACHE_NAME = 'portal-v6';
 var ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
-  './version.js',
   './manifest.json'
 ];
 

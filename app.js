@@ -21,8 +21,6 @@ var Portal = (function () {
     gates = load();
     render();
 
-    document.getElementById('version').textContent = '0.' + APP_VERSION;
-
     document.querySelectorAll('.color-opt').forEach(function (btn) {
       btn.addEventListener('click', function () {
         selectColor(btn.dataset.color);
