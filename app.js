@@ -8,7 +8,6 @@ var Portal = (function () {
 
   function init() {
     els.grid = document.getElementById('grid');
-    els.empty = document.getElementById('empty-state');
     els.modal = document.getElementById('modal');
     els.form = document.getElementById('form');
     els.modalTitle = document.getElementById('modal-title');
@@ -17,25 +16,14 @@ var Portal = (function () {
     els.code = document.getElementById('input-code');
     els.delay = document.getElementById('input-delay');
     els.color = document.getElementById('input-color');
-    els.size = 'half';
     els.btnDelete = document.getElementById('btn-delete');
 
     gates = load();
     render();
 
-    document.getElementById('btn-add').addEventListener('click', function () {
-      openModal(null);
-    });
-
     document.querySelectorAll('.color-opt').forEach(function (btn) {
       btn.addEventListener('click', function () {
         selectColor(btn.dataset.color);
-      });
-    });
-
-    document.querySelectorAll('.size-opt').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        selectSize(btn.dataset.size);
       });
     });
 
@@ -86,12 +74,10 @@ var Portal = (function () {
 
   function render() {
     els.grid.innerHTML = '';
-    els.empty.hidden = gates.length > 0;
-    els.grid.style.display = gates.length ? '' : 'none';
 
     gates.forEach(function (gate) {
       var btn = document.createElement('button');
-      btn.className = 'gate-btn' + (gate.size === 'full' ? ' size-full' : '');
+      btn.className = 'gate-btn';
 
       var shadow = document.createElement('span');
       shadow.className = 'btn-shadow';
@@ -141,6 +127,14 @@ var Portal = (function () {
 
       els.grid.appendChild(btn);
     });
+
+    var addBtn = document.createElement('button');
+    addBtn.className = 'btn-add-grid';
+    addBtn.textContent = '+';
+    addBtn.addEventListener('click', function () {
+      openModal(null);
+    });
+    els.grid.appendChild(addBtn);
   }
 
   function call(gate) {
@@ -157,7 +151,6 @@ var Portal = (function () {
     els.code.value = gate ? gate.code : '';
     els.delay.value = gate ? gate.delay : 0;
     selectColor(gate ? gate.color : '#4A90D9');
-    selectSize(gate ? gate.size || 'half' : 'half');
     els.btnDelete.hidden = !gate;
 
     els.modal.showModal();
@@ -170,13 +163,6 @@ var Portal = (function () {
     });
   }
 
-  function selectSize(size) {
-    els.size = size;
-    document.querySelectorAll('.size-opt').forEach(function (btn) {
-      btn.classList.toggle('selected', btn.dataset.size === size);
-    });
-  }
-
   function save() {
     var data = {
       id: editingId || uuid(),
@@ -184,8 +170,7 @@ var Portal = (function () {
       phone: els.phone.value.trim(),
       code: els.code.value.trim(),
       delay: parseInt(els.delay.value, 10),
-      color: els.color.value,
-      size: els.size
+      color: els.color.value
     };
 
     if (!data.name || !data.phone || !data.code) return;

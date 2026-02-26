@@ -33,19 +33,6 @@ body {
   padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 16px);
 }
 
-#btn-add {
-  width: 100%;
-  padding: 16px;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  border-radius: var(--radius);
-  border: 2px dashed var(--text-muted);
-  background: transparent;
-  color: var(--text);
-  font-size: 17px;
-  cursor: pointer;
-}
-
 /* Grid */
 #grid {
   display: grid;
@@ -60,10 +47,6 @@ body {
 
 #grid::-webkit-scrollbar {
   display: none;
-}
-
-.gate-btn.size-full {
-  grid-column: span 2;
 }
 
 .gate-btn {
@@ -162,25 +145,19 @@ body {
   opacity: 1;
 }
 
-/* Empty state */
-#empty-state[hidden] {
-  display: none;
-}
-
-#empty-state {
-  flex: 1;
+/* Add button in grid */
+.btn-add-grid {
+  aspect-ratio: 2 / 1;
+  border-radius: 18px;
+  border: 2px dashed var(--text-muted);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 17px;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
 }
-
-#empty-state p {
-  font-size: 18px;
-  color: var(--text-muted);
-}
-
 
 /* Modal */
 dialog {
@@ -233,28 +210,6 @@ dialog input[type="tel"] {
 dialog input[type="range"] {
   width: 100%;
   accent-color: #4A90D9;
-}
-
-#size-picker {
-  display: flex;
-  gap: 10px;
-}
-
-.size-opt {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid #555;
-  background: transparent;
-  color: var(--text);
-  font-size: 15px;
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-.size-opt.selected {
-  border-color: #4A90D9;
-  background: rgba(74, 144, 217, 0.15);
 }
 
 #color-picker {
